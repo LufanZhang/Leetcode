@@ -32,31 +32,29 @@ After calling your function, the tree should look like:
  */
 public class PopulatingNextRightPointersinEachNodeII {
 	public void connect(TreeLinkNode root) {
-        if(root==null)
-        return;
-        TreeLinkNode runner = root;
-        Queue<TreeLinkNode> queue = new LinkedList<TreeLinkNode>();
-        queue.offer(root);
-        int currentLevel = 1;
-        int nextLevel = 0;
-        while(!queue.isEmpty()){
-            runner = queue.poll();
-            currentLevel--;
-            if(runner.left!=null){
-                queue.offer(runner.left);
-                nextLevel++;
-            }
-            if(runner.right!=null){
-                queue.offer(runner.right);
-                nextLevel++;
-            }
-            if(currentLevel==0){
-                runner.next = null;
-                currentLevel = nextLevel;
-                nextLevel = 0;
-            }
-            else
-            runner.next = queue.peek();
+        TreeLinkNode dummy = new TreeLinkNode(0);
+        TreeLinkNode parent = root;
+        if (root == null){
+            return;
         }
+        root.next = null;
+        while (parent != null){
+            TreeLinkNode runner = dummy;
+            while (parent != null){
+                if (parent.left != null){
+                    runner.next = parent.left;
+                    runner = runner.next;
+                }
+                if (parent.right != null){
+                    runner.next = parent.right;
+                    runner = runner.next;
+                }
+                parent = parent.next;
+                runner.next = null;
+            }
+            parent = dummy.next;
+            dummy.next = null;
+        }
+        
     }
 }
