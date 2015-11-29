@@ -12,7 +12,7 @@ For example,
 [1,1,2], [1,2,1], and [2,1,1]. 
  */
 public class PermutationsII {
-	  public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
+	  public static ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
           ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
           if(num==null||num.length==0)
           return result;
@@ -22,7 +22,7 @@ public class PermutationsII {
           permuteHelper(num,result,list,set);
           return result;
 	   }
-	   public void permuteHelper(int[] num,ArrayList<ArrayList<Integer>> result,ArrayList<Integer> list,HashSet<Integer> set){
+	   public static void permuteHelper(int[] num,ArrayList<ArrayList<Integer>> result,ArrayList<Integer> list,HashSet<Integer> set){
 	       if(list.size()==num.length){
 	           result.add(new ArrayList<Integer>(list));
 	           return;
@@ -37,5 +37,38 @@ public class PermutationsII {
 	           set.remove(i);
 	       }
 	       
+	   }
+//	public static List<List<Integer>> permuteUnique(int[] nums) {
+//        List<List<Integer>> res = new ArrayList<List<Integer>>();
+//        if(nums == null || nums.length == 0){
+//            return res;
+//        }
+//        List<Integer> list = new ArrayList<Integer>();
+//        Arrays.sort(nums);
+//        permuteHelper(res,list,nums);
+//        return res;
+//    }
+//    public static void permuteHelper(List<List<Integer>> res,List<Integer> list,int[] nums){
+//        if(list.size() == nums.length){
+//            List<Integer> temp = new ArrayList<Integer>();
+//            for(int i=0;i<nums.length;i++){
+//                temp.add(nums[list.get(i)]);
+//            }
+//            res.add(temp);
+//        }
+//        for(int i=0;i<nums.length;i++){
+//            int cur = nums[i];
+//            if((i != 0 && cur == nums[i-1] && !list.contains(i-1)) || list.contains(i)){
+//                continue;
+//            }
+//            list.add(i);
+//            permuteHelper(res,list,nums);
+//            list.remove(list.size()-1);
+//        }
+//    }
+	   public static void main(String[] args){
+		   int[] nums = {3,3,0,0,2,3,2};
+		   ArrayList<ArrayList<Integer>> list = permuteUnique(nums);
+		   System.out.println(list.size());
 	   }
 }

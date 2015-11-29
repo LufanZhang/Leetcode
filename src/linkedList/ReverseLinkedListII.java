@@ -13,10 +13,12 @@ Given m, n satisfy the following condition:
  */
 public class ReverseLinkedListII {
 	   public ListNode reverseBetween(ListNode head, int m, int n) {
-	        if(head==null)
-	        return head;
-	        if(m>=n)
-	        return head;
+	        if(head==null){
+	        	return head;
+	        }
+	        if(m>=n){
+	        	 return head;
+	        }
 	        ListNode begin = new ListNode(0);
 	        begin.next = head;
 	        ListNode runner = begin;

@@ -16,28 +16,27 @@ Given n = 3, your program should return all 5 unique BST's shown below.
 
  */
 public class UniqueBinarySearchTreesII {
-    public ArrayList<TreeNode> generateTrees(int n) {
-        ArrayList<TreeNode> result = new ArrayList<TreeNode>();
-        return generateHelper(1,n);
-    }
-    public ArrayList<TreeNode> generateHelper(int i,int j){
-        ArrayList<TreeNode> result = new ArrayList<TreeNode>();
-        if(i>j){
-            result.add(null);
-            return result;
-        }
-        for(int m=i;m<=j;m++){
-            ArrayList<TreeNode> left = generateHelper(i,m-1);
-            ArrayList<TreeNode> right = generateHelper(m+1,j);
-            for(TreeNode curLeft:left){
-                for(TreeNode curRight:right){
-                    TreeNode root = new TreeNode(m);
-                    root.left = curLeft;
-                    root.right = curRight;
-                    result.add(root);
-                }
-            }
-        }
-        return result;
-    }
+	 public ArrayList<TreeNode> generateTrees(int n) {
+	        return generateHelper(1,n);
+	    }
+	   public ArrayList<TreeNode> generateHelper(int start,int end){
+	       ArrayList<TreeNode> res = new ArrayList<TreeNode>();
+	       if(start > end){
+	           res.add(null);
+	           return res;
+	       }
+	       for(int i=start;i<=end;i++){
+	           ArrayList<TreeNode> left = generateHelper(start,i-1);
+	           ArrayList<TreeNode> right = generateHelper(i+1,end);
+	           for(TreeNode curLeft:left){
+	               for(TreeNode curRight:right){
+	                   TreeNode root = new TreeNode(i);
+	                   root.left = curLeft;
+	                   root.right = curRight;
+	                   res.add(root);
+	               }
+	           }
+	       }
+	       return res;
+	   }
 }

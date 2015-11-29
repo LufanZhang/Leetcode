@@ -34,4 +34,23 @@ public class SumRoottoLeafNumbers {
 
 	        return dfs(root.left, sum) + dfs(root.right, sum);
 	    }
+	    int res = 0;
+//	    public int sumNumbers(TreeNode root) {
+//	        if(root == null){
+//	            return 0;
+//	        }
+//	        helper(root,0);
+//	        return res;
+//	    }
+//	    public void helper(TreeNode root,int parent){
+//	        if(root == null){
+//	            return;
+//	        }
+//	        int curParent = parent * 10 + root.val;
+//	        if(root.left == null && root.right == null){
+//	            res += root.val + parent * 10;
+//	        }
+//	        helper(root.left,curParent);
+//	        helper(root.right,curParent);
+//	    }
 }

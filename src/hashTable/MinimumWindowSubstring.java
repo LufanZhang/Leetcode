@@ -17,7 +17,7 @@ If there is no such window in S that covers all characters in T, return the emtp
 If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S. 
  */
 public class MinimumWindowSubstring {
-    public String minWindow(String S, String T) {
+    public static String minWindow(String S, String T) {
         if (S == null || S.length() == 0) {
             return S;
         }
@@ -82,4 +82,10 @@ public class MinimumWindowSubstring {
         }
         return minWindow;
     }
+	 public static void main(String args[]){
+		 String s = "ADOBECODEBANC";
+		 String t = "ABC";
+		 String res = minWindow(s,t);
+		 System.out.println("res="+res);
+	 }
 }

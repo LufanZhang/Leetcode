@@ -31,7 +31,7 @@ public class PalindromePartitioningII {
 	    	    int min = Integer.MAX_VALUE;
 	    	    for(int j=i+1;j<=length;j++){
 	    	        if(flag[i][j-1]==true&&min>1+res[j])
-	    	        min = 1+res[j];
+	    	        min = 1+res[j]; 
 	    	    }
 	    	    res[i] = min;
 	    	}

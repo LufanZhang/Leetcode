@@ -2,6 +2,7 @@ package array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /*
  *  Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
@@ -20,28 +21,29 @@ A solution set is:
 [2, 2, 3] 
  */
 public class CombinationSum {
-	   public ArrayList<ArrayList<Integer>> combinationSum(int[] num, int target) {
-	         int length = num.length;
-	      ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-	      if(num==null)
-	      return result;
-	      Arrays.sort(num);
-	      ArrayList<Integer> list = new ArrayList<Integer>();
-	      combinationHelper(num,result,list,target,0);
-	      return result;
+	 public List<List<Integer>> combinationSum(int[] candidates, int target) {
+	        List<List<Integer>> res = new ArrayList<List<Integer>>();
+	        List<Integer> list = new ArrayList<Integer>();
+	        if(candidates == null || candidates.length == 0){
+	            return res;
+	        }
+	        Arrays.sort(candidates);
+	        helper(res,list,target,0,candidates);
+	        return res;
 	    }
-	    public void combinationHelper(int[] num,ArrayList<ArrayList<Integer>> result,ArrayList<Integer> list,int target,int start){
-	        if(target<0)
-	        return;
-	        if(target==0){
-	            result.add(new ArrayList<Integer>(list));
+	    public void helper(List<List<Integer>> res,List<Integer> list,int target,int start,int[] nums){
+	        if(target == 0){
+	            res.add(new ArrayList<Integer>(list));
+	        }
+	        if(start >= nums.length || target < nums[start]){
 	            return;
 	        }
-	        for(int i=start;i<num.length;i++){
-	            if(i!=start&&num[i]==num[i-1])
-	            continue;
-	            list.add(num[i]);
-	            combinationHelper(num,result,list,target-num[i],i);
+	        for(int i=start;i<nums.length;i++){
+	            if(i>0 && nums[i] == nums[i-1]){
+	                continue;
+	            }
+	            list.add(nums[i]);
+	            helper(res,list,target-nums[i],i,nums);
 	            list.remove(list.size()-1);
 	        }
 	    }

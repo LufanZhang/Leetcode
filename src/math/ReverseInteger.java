@@ -5,6 +5,9 @@ package math;
 Example1: x = 123, return 321
 Example2: x = -123, return -321 
  */
+/*
+ * 这个题就是要考虑溢出和符号
+ */
 public class ReverseInteger {
 	   public int reverse(int x) {
 	        int sig = 1;

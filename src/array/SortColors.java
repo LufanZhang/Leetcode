@@ -7,6 +7,7 @@ Here, we will use the integers 0, 1, and 2 to represent the color red, white, an
 Note:
 You are not suppose to use the library's sort function for this problem. 
  */
+//m和n之间是1，包括m和n
 public class SortColors {
     public void sortColors(int[] A) {
         int m = 0;

@@ -2,6 +2,9 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /*
  *  Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
@@ -30,24 +33,67 @@ Visually, the graph looks like the following:
 
  */
 public class CloneGraph {
-	 public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-	        if(node==null)
-	        return null;
-	        HashMap<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
-	        //this function will put the node in key, and the completed clone graph in value
-	        cloneHelper(node,map);
-	        return map.get(node);
+	//DFS
+//	  public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+//	        if(node == null){
+//	            return null;
+//	        }
+//	        HashMap<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
+//	        return helper(node,map);
+//	    }
+//	    public UndirectedGraphNode helper(UndirectedGraphNode node,HashMap<UndirectedGraphNode,UndirectedGraphNode> map){
+//	        UndirectedGraphNode cur = new UndirectedGraphNode(node.label);
+//	         map.put(node,cur);
+//	        for(UndirectedGraphNode neighbor:node.neighbors){
+//	            if(!map.containsKey(neighbor)){
+//	                cur.neighbors.add(helper(neighbor,map));
+//	            }
+//	            else{
+//	                cur.neighbors.add(map.get(neighbor));
+//	            }
+//	        }
+//	        return cur;
+//	    }
+//	    
+	    
+	    
+
+	//BFS
+	 public static UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+	       if(node == null){
+	           return null;
+	       }
+	      Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
+	      queue.offer(node);
+	      HashMap<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
+	      UndirectedGraphNode nodeClone = new UndirectedGraphNode(node.label);
+	      map.put(node,nodeClone);
+	      while(!queue.isEmpty()){
+	          UndirectedGraphNode cur = queue.poll();
+	          List<UndirectedGraphNode> list = new ArrayList<UndirectedGraphNode>();
+	          for(UndirectedGraphNode neighbor:cur.neighbors){
+	              if(map.containsKey(neighbor)){
+	                  UndirectedGraphNode neighborClone = map.get(neighbor);
+	                  list.add(neighborClone);
+	              }
+	              else{
+	                  UndirectedGraphNode neighborClone = new UndirectedGraphNode(neighbor.label);
+	                  list.add(neighborClone);
+	                  map.put(neighbor,neighborClone);
+	                  queue.offer(neighbor);
+	              }
+	          }
+	          map.get(cur).neighbors = list;
+	      }
+	      return nodeClone;
 	    }
-	    public void cloneHelper(UndirectedGraphNode node,HashMap<UndirectedGraphNode,UndirectedGraphNode> map){
-	        if(map.containsKey(node))
-	        return;
-	        UndirectedGraphNode  nodeClone = new UndirectedGraphNode(node.label);
-	        ArrayList<UndirectedGraphNode> neighborClone = new ArrayList<UndirectedGraphNode>();
-	        map.put(node,nodeClone);
-	        for(UndirectedGraphNode neighbor:node.neighbors){
-	            cloneHelper(neighbor,map);
-	            neighborClone.add(map.get(neighbor));
-	        }
-	        nodeClone.neighbors = neighborClone;
-	    }
+	 public static void main(String args[]){
+		 UndirectedGraphNode first = new UndirectedGraphNode(0);
+		 UndirectedGraphNode second = new UndirectedGraphNode(0);
+		 UndirectedGraphNode third = new UndirectedGraphNode(0);
+		 first.neighbors.add(second);
+		 first.neighbors.add(third);
+		 UndirectedGraphNode res = cloneGraph(first);
+		 System.out.println(res.neighbors.size());
+	 }
 }

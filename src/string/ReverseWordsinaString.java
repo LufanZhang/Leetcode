@@ -20,4 +20,12 @@ public class ReverseWordsinaString {
 	        return "";
 	        return res.substring(0,res.length()-1);
 	    }
+	 public static void main(String args[]){
+		 String s = "a    e  r";
+		 String[] array = s.split(" ");
+		// System.out.println(array.length);
+		 for(int i=0;i<array.length;i++){
+			 System.out.println("cur = "+array[i]);
+		 }
+	 }
 }

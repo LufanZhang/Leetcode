@@ -1,13 +1,15 @@
 package hashTable;
 
 import java.awt.Point;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /*
  * Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
  */
 public class MaxPointsonaLine {
-	 public int maxPoints(Point[] points) {
+	 public static int maxPoints(Point[] points) {
 	        int length = points.length;
 	        if(points==null||length==0)
 	        return 0;
@@ -39,4 +41,16 @@ public class MaxPointsonaLine {
 	        }
 	        return result;
 	    }
+   
+	 public static void main(String args[]){
+		 Point first = new Point(0,0);
+		 Point second = new Point(1,1);
+		 Point third = new Point(0,0);
+		 Point[] points = new Point[3];
+		 points[0] = first;
+		 points[1] = second;
+		 points[2] = third;
+		 int res = maxPoints(points);
+		 System.out.println(res);
+	 }
 }

@@ -34,6 +34,7 @@ public class LongestValidParentheses {
                     result = i-stack.peek();
                     if(result>max)
                     max = result;
+               
                 }
             }
         }

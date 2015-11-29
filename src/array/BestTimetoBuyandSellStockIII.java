@@ -8,7 +8,7 @@ Note:
 You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
  */
 public class BestTimetoBuyandSellStockIII {
-	   public int maxProfit(int[] prices) {
+	   public static int maxProfit(int[] prices) {
 	        int length = prices.length;
 	        if(prices==null||length<2)
 	        return 0;
@@ -39,4 +39,10 @@ public class BestTimetoBuyandSellStockIII {
 	        }
 	        return profit;
 	    }
+	
+	public static void main(String args[]){
+		int[] array = {3,3,5,0,0,3,1,4};
+		int res = maxProfit(array);
+		System.out.println(res);
+	}
 }
