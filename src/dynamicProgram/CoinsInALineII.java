@@ -1,5 +1,7 @@
 package dynamicProgram;
 
+import java.util.List;
+
 public class CoinsInALineII {
 //	 public boolean firstWillWin(int[] values) {
 //	        // write your code here
@@ -54,5 +56,6 @@ public class CoinsInALineII {
 	public static void main(String args[]){
 		int[] A = {1,2,3,4,5,6,7};
 		boolean res = firstWillWin(A);
+		
 	}
 }
